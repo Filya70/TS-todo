@@ -1,12 +1,15 @@
 import React from 'react';
 
-import { Navbar } from './components';
+import { Navbar, TodoForm } from './components';
 
 const App: React.FC = () => {
   return (
-    <div>
+    <>
       <Navbar />
-    </div>
+      <div className="container">
+        <TodoForm />
+      </div>
+    </>
   );
 };
 
