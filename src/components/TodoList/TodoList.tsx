@@ -1,15 +1,26 @@
 import React from 'react';
+import { Todo } from '../../types/type';
 
-const TodoList: React.FC = () => {
+type TodoListProps = {
+  todos: Todo[];
+};
+
+const TodoList: React.FC<TodoListProps> = ({ todos }) => {
   return (
     <ul>
-      <li className="todo">
-        <label>
-          <input type="checkbox" />
-          <span></span>
-          <i className="material-icons red-text">delete</i>
-        </label>
-      </li>
+      {todos.map((i) => (
+        <li className="todo" key={i.id}>
+          <label>
+            <input
+              type="checkbox"
+              className={i.completed ? 'completed' : ''}
+              checked={i.completed}
+            />
+            <span>{i.title}</span>
+            <i className="material-icons red-text">delete</i>
+          </label>
+        </li>
+      ))}
     </ul>
   );
 };

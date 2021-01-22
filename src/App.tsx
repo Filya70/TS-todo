@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 
-import { Navbar, TodoForm } from './components';
+import { Navbar, TodoForm, TodoList } from './components';
+import { Todo } from './types/type';
 
 const App: React.FC = () => {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   const addHandler = (title: string) => {
-    console.log(`New todo: ${title}`);
+    const newTodo: Todo = {
+      title,
+      id: Date.now(),
+      completed: false,
+    };
+    setTodos((prev) => [newTodo, ...prev]);
   };
 
   return (
@@ -14,6 +20,7 @@ const App: React.FC = () => {
       <Navbar />
       <div className="container">
         <TodoForm onAdd={addHandler} />
+        <TodoList todos={todos} />
       </div>
     </>
   );
